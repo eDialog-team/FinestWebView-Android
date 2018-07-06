@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <dimen name="toolbarHeight">56dp</dimen>
+  <dimen name="toolbarHeight">32dp</dimen>
   <dimen name="menusWidth">168dp</dimen>
 
   <dimen name="defaultDividerHeight">4dp</dimen>

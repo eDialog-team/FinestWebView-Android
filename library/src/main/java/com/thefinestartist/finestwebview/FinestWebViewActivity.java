@@ -455,7 +455,8 @@ public class FinestWebViewActivity extends AppCompatActivity
     forward.setOnClickListener(this);
     more.setOnClickListener(this);
 
-    swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeRefreshLayout);
+//    swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeRefreshLayout);
+      swipeRefreshLayout = new SwipeRefreshLayout(this);
 
     gradient = findViewById(R.id.gradient);
     divider = findViewById(R.id.divider);
