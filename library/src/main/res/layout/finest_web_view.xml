@@ -24,6 +24,8 @@
       android:id="@+id/appBar"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
+      android:background="#93FFFFFF"
+      android:alpha="0.5"
       app:elevation="0dp">
 
     <android.support.v7.widget.Toolbar

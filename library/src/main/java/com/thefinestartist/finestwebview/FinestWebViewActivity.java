@@ -505,7 +505,8 @@ public class FinestWebViewActivity extends AppCompatActivity
           new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, (int) toolbarHeight);
       toolbarLayout.setMinimumHeight((int) toolbarHeight);
       toolbarLayout.setLayoutParams(params);
-      toolbarLayout.setBackgroundColor(Color.parseColor("#7dffffff"));
+      ColorDrawable bgDrawable = new ColorDrawable(Color.TRANSPARENT);
+      toolbarLayout.setBackground(bgDrawable);
       coordinatorLayout.requestLayout();
     }
 
