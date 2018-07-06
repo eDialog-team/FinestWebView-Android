@@ -628,6 +628,7 @@ public class FinestWebViewActivity extends AppCompatActivity
       webView.setWebChromeClient(new MyWebChromeClient());
       webView.setWebViewClient(new MyWebViewClient());
       webView.setDownloadListener(downloadListener);
+      webView.setLayerType(View.LAYER_TYPE_HARDWARE, null);
 
       WebSettings settings = webView.getSettings();
 
