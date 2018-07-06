@@ -5,8 +5,10 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.StateListDrawable;
 import android.net.MailTo;
@@ -503,6 +505,7 @@ public class FinestWebViewActivity extends AppCompatActivity
           new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, (int) toolbarHeight);
       toolbarLayout.setMinimumHeight((int) toolbarHeight);
       toolbarLayout.setLayoutParams(params);
+      toolbarLayout.setBackgroundColor(Color.parseColor("#7dffffff"));
       coordinatorLayout.requestLayout();
     }
 
@@ -514,7 +517,7 @@ public class FinestWebViewActivity extends AppCompatActivity
     }
 
     { // Icons
-      updateIcon(close, rtl ? R.drawable.more : R.drawable.close);
+      updateIcon(close, rtl ? R.drawable.more : R.drawable.back);
       updateIcon(back, R.drawable.back);
       updateIcon(forward, R.drawable.forward);
       updateIcon(more, rtl ? R.drawable.close : R.drawable.more);
