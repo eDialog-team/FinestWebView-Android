@@ -1,3 +1,5 @@
+package com.thefinestartist.finestwebview;
+
 import android.webkit.JavascriptInterface;
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -44,7 +46,6 @@ import android.app.Notification;
 public class JavaScriptInterfaceBlob {
     private Context context;
     private NotificationManager nm;
-    public String file_name;
     public JavaScriptInterfaceBlob(Context context) {
         this.context = context;
     }
@@ -58,7 +59,7 @@ public class JavaScriptInterfaceBlob {
         final int notificationId = 1;
         String currentDateTime = DateFormat.getDateTimeInstance().format(new Date());
         final File dwldsPath = new File(Environment.getExternalStoragePublicDirectory(
-                Environment.DIRECTORY_DOWNLOADS) + "/" + file_name + currentDateTime + "_.pdf");
+                Environment.DIRECTORY_DOWNLOADS) + "/" + currentDateTime + "_.pdf");
         byte[] pdfAsBytes = Base64.decode(base64PDf.replaceFirst("^data:application/pdf;base64,", ""), 0);
         FileOutputStream os;
         os = new FileOutputStream(dwldsPath, false);
