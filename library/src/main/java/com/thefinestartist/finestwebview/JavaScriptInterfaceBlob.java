@@ -33,10 +33,10 @@ public class JavaScriptInterfaceBlob {
         String currentDateTime = DateFormat.getDateTimeInstance().format(new Date());
         final File dwldsPath = new File(Environment.getExternalStoragePublicDirectory(
                 Environment.DIRECTORY_DOWNLOADS) + "/" + fileName);
-        byte[] pdfAsBytes = Base64.decode(base64PDf.replaceFirst("^data:" + type.trim() + ";base64,", ""), 0);
+        byte[] fileAsBytes = Base64.decode(base64PDf.replaceFirst("^data:" + type + ";base64,", ""), 0);
         FileOutputStream os;
         os = new FileOutputStream(dwldsPath, false);
-        os.write(pdfAsBytes);
+        os.write(fileAsBytes);
         os.flush();
 
         if(dwldsPath.exists()) {
@@ -47,6 +47,7 @@ public class JavaScriptInterfaceBlob {
             target.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
 
             Intent intent = Intent.createChooser(target, "Open File");
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             try {
                 context.startActivity(intent);
             } catch (ActivityNotFoundException e) {
