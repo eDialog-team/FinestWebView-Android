@@ -1,47 +1,18 @@
 package com.thefinestartist.finestwebview;
 
-import android.webkit.JavascriptInterface;
-import android.annotation.SuppressLint;
-import android.content.Intent;
-import android.content.res.Configuration;
-import android.content.res.TypedArray;
-import android.graphics.Bitmap;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.GradientDrawable;
-import android.graphics.drawable.StateListDrawable;
-import android.net.MailTo;
-import android.net.Uri;
-import android.os.Build;
-import android.os.Bundle;
+import android.app.NotificationManager;
+import android.content.Context;
+import android.os.Environment;
 import android.os.Handler;
-import android.support.annotation.DrawableRes;
-import android.support.design.widget.AppBarLayout;
-import android.support.design.widget.CoordinatorLayout;
-import android.support.design.widget.Snackbar;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.AppCompatImageButton;
-import android.support.v7.widget.Toolbar;
-import android.util.TypedValue;
-import android.view.Gravity;
-import android.view.View;
-import android.view.ViewConfiguration;
-import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.webkit.DownloadListener;
-import android.webkit.WebChromeClient;
-import android.webkit.WebSettings;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
+import android.support.v4.app.NotificationCompat;
+import android.util.Base64;
+import android.webkit.JavascriptInterface;
 
-import android.app.Notification;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.text.DateFormat;
+import java.util.Date;
 
 public class JavaScriptInterfaceBlob {
     private Context context;
@@ -51,15 +22,15 @@ public class JavaScriptInterfaceBlob {
     }
 
     @JavascriptInterface
-    public void getBase64FromBlobData(String base64Data) throws IOException {
-        convertBase64StringToPdfAndStoreIt(base64Data);
+    public void getBase64FromBlobData(String base64Data, String fileName) throws IOException {
+        convertBase64StringToPdfAndStoreIt(base64Data, fileName);
     }
    
-    private void convertBase64StringToPdfAndStoreIt(String base64PDf) throws IOException {
+    private void convertBase64StringToPdfAndStoreIt(String base64PDf, String fileName) throws IOException {
         final int notificationId = 1;
         String currentDateTime = DateFormat.getDateTimeInstance().format(new Date());
         final File dwldsPath = new File(Environment.getExternalStoragePublicDirectory(
-                Environment.DIRECTORY_DOWNLOADS) + "/" + currentDateTime + "_.pdf");
+                Environment.DIRECTORY_DOWNLOADS) + "/" + fileName);
         byte[] pdfAsBytes = Base64.decode(base64PDf.replaceFirst("^data:application/pdf;base64,", ""), 0);
         FileOutputStream os;
         os = new FileOutputStream(dwldsPath, false);
@@ -67,7 +38,7 @@ public class JavaScriptInterfaceBlob {
         os.flush();
 
         if(dwldsPath.exists()) {
-            NotificationCompat.Builder b = new NotificationCompat.Builder(context, "MY_DL");
+            NotificationCompat.Builder b = new NotificationCompat.Builder(context, "MY_DL")
                     .setDefaults(NotificationCompat.DEFAULT_ALL)
                     .setWhen(System.currentTimeMillis())
                     .setContentTitle("Smart'POS")
