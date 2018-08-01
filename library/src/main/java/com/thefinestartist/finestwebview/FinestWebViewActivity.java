@@ -631,6 +631,8 @@ public class FinestWebViewActivity extends AppCompatActivity
     }
 
     { // WebView
+    
+      WebView.setWebContentsDebuggingEnabled(true);
       webView.setWebChromeClient(new MyWebChromeClient());
       webView.setWebViewClient(new MyWebViewClient());
       webView.setDownloadListener(downloadListener);
